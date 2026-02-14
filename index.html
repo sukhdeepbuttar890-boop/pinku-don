@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Gurbaksh ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: #fff5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        #quiz-container, #wish-container {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 77, 0.15);
+            max-width: 500px;
+            width: 90%;
+            margin: 20px;
+            border: 1px solid #ffcccc;
+        }
+
+        #wish-container { display: none; }
+
+        h1 { color: #d63031; font-size: 1.6rem; }
+        
+        /* Photo Gallery Styling */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: 0.3s;
+        }
+
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+
+        .polaroid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quiz-container">
+        <h1 id="question-text">Ready for your surprise, Gurbaksh?</h1>
+        <p id="sub-text">Answer 3 quick questions first...</p>
+        <button class="btn" onclick="nextQuestion()">Let's go! ❤️</button>
+    </div>
+
+    <div id="wish-container">
+        <h1>Happy Birthday, Gurbaksh! 🎂</h1>
+        <p>You make every "frame" of my life beautiful.</p>
+        
+        <div class="gallery">
+            <div class="polaroid"><img src="photo1.png.jpeg" alt="Memory 1"></div>
+            <div class="polaroid"><img src="photo2.png.jpeg" alt="Memory 2"></div>
+            <div class="polaroid"><img src="photo3.png.jpeg" alt="Memory 3"></div>
+            <div class="polaroid"><img src="photo4.png.jpeg" alt="Memory 4"></div>
+        </div>
+
+        <p style="font-style: italic; color: #d63031;">Since Jan 13, 2023, and forever...</p>
+        <p><strong>I Love You!</strong></p>
+    </div>
+
+    <script>
+        let step = 0;
+        const questions = [
+            "Who is the most camera-ready girl ever?",
+            "Who is my favorite person in the whole world?",
+            "Ready to see our memories?"
+        ];
+
+        function nextQuestion() {
+            const qText = document.getElementById('question-text');
+            const btn = document.querySelector('.btn');
+            if (step < questions.length) {
+                qText.innerText = questions[step];
+                btn.innerText = "Next ❤️";
+                step++;
+            } else {
+                showWish();
+            }
+        }
+
+        function showWish() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('wish-container').style.display = 'block';
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
